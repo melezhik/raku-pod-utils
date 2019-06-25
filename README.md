@@ -330,6 +330,25 @@ say textify-guts($block); # OUTPUT «block␤»
 say textify-guts([$block, $block]); # OUTPUT «block block␤»
 ```
 
+### multi sub recurse-until-str
+
+```perl6
+multi sub recurse-until-str(Str:D $s)      return Str;
+multi sub recurse-until-str(Pod::Block $n) return Str;
+
+```
+
+Accepts a `Pod::Block::*` object and returns a concatenation of all subpods content.
+
+Example:
+
+```perl6
+my $block         = Pod::Block::Para.new(contents => ["block"]);
+my $complex-block = pod-block("one", pod-block("two"), pod-bold("three"));
+say recurse-until-str($block); # OUTPUT «block␤»
+say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
+```
+
 # AUTHORS
 
 Alexander Mouquin <@Mouq>
