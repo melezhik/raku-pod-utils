@@ -367,7 +367,7 @@ Juan Julian <@JJ>
 
 Zoffix Znet <@zoffixznet>
 
-Antonio <antoniogamiz10@gmail.com>
+Antonio <@antoniogamiz>
 
 # COPYRIGHT AND LICENSE
 

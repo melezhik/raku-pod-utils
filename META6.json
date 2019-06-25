@@ -1,8 +1,18 @@
 {
-  "authors": ["Antonio"],
+  "authors": [
+    "@Mouq",
+    "@coke",
+    "@hoelzro",
+    "@timo",
+    "@moritz",
+    "@JJ",
+    "@MasterDuke17",
+    "@zoffixznet",
+    "@antoniogamiz"
+  ],
   "build-depends": [],
   "depends": [],
-  "description": "blah blah blah",
+  "description": "Set of helper functions to ease working with Pods!",
   "license": "Artistic-2.0",
   "name": "Pod::Utilities",
   "perl": "6.c",
@@ -10,7 +20,7 @@
     "Pod::Utilities": "lib/Pod/Utilities.pm6"
   },
   "resources": [],
-  "source-url": "",
+  "source-url": "https://github.com/antoniogamiz/Pod-Utilities.git",
   "tags": [],
   "test-depends": ["Test::META"],
   "version": "0.0.1"
