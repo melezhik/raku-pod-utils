@@ -8,6 +8,22 @@ Pod::Utilities - Set of helper functions to ease working with Pods!
 
 ```perl6
 use Pod::Utilities;
+
+# create links!
+my $link = pod-link("documentation", "https://docs.perl6.org/");
+
+# create bold formatting!
+my $bold = pod-bold("bold");
+
+# and more...
+say first-code-block($=pod[0].contents);
+
+=begin pod
+
+  say "Perl6 rocks";
+
+=end pod
+
 ```
 
 # DESCRIPTION
