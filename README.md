@@ -38,6 +38,32 @@ first-code-block($=pod[0].contents)
 # OUTPUT «say "some code";␤say "more code";␤»
 ```
 
+### sub pod-title
+
+```perl6
+sub pod-title (
+    Str $title,
+) returns Pod::Block::Named;
+```
+
+Creates a new Pod::Block::Named object (with :name set to "TITLE")
+and populate it with a Pod::Block::Para containing \$title.
+
+Example:
+
+```perl6
+
+pod-title("title");
+
+# OUTPUT Equivalent to:
+
+=begind pod
+
+=TITLE title
+
+=end pod
+```
+
 ### sub pod-with-title
 
 ```perl6

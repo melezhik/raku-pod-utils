@@ -1,14 +1,14 @@
 use v6.c;
 use Test;
 
-plan *;
+plan 2;
 
 use Pod::Utilities;
 
 my $paragraph = $=pod[0].contents[1];
 
 is-deeply pod-with-title("title", [$paragraph]), $=pod.first,
-"Correct structure";;
+"Correct structure";
 
 $=pod[0].contents.pop;
 

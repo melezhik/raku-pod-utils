@@ -38,7 +38,8 @@ sub first-code-block(@pod) is export {
     @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
 
-
+#| Creates a new Pod::Block::Named object (with :name set to "TITLE")
+#| and populate it with a Pod::Block::Para containing $title.
 sub pod-title($title) is export {
     Pod::Block::Named.new(
         name     => "TITLE",
