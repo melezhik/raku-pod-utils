@@ -2,36 +2,6 @@ use v6.c;
 
 unit module Pod::Utilities:ver<0.0.1>;
 
-sub pod-gist(Pod::Block $pod, $level = 0) is export {
-    my $leading = ' ' x $level;
-    my %confs;
-    my @chunks;
-    for <config name level caption type> {
-        my $thing = $pod.?"$_"();
-        if $thing {
-            %confs{$_} = $thing ~~ Iterable ?? $thing.perl !! $thing.Str;
-        }
-    }
-    @chunks = $leading, $pod.^name, (%confs.perl if %confs), "\n";
-    for $pod.contents.list -> $c {
-        if $c ~~ Pod::Block {
-            @chunks.append: pod-gist($c, $level + 2);
-        }
-        elsif $c ~~ Str {
-            @chunks.append: $c.indent($level + 2), "\n";
-        } elsif $c ~~ Positional {
-            @chunks.append: $c.map: {
-                if $_ ~~ Pod::Block {
-                    *.&pod-gist
-                } elsif $_ ~~ Str {
-                    $_
-                }
-            }
-        }
-    }
-    @chunks.join;
-}
-
 #| Returns the first Pod::Block::Code found in an array, concatenating 
 #| all lines in it. If any is found, it will return an empty string.
 sub first-code-block(@pod) is export {

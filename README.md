@@ -295,7 +295,7 @@ pod-table([pod-heading("head", level => 2),
 
 ```
 
-# AUTHOR
+# AUTHORS
 
 Alexander Mouquin <@Mouq>
 
