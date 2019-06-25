@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/antoniogamiz/Pod-Utilities.svg?branch=master)](https://travis-ci.org/antoniogamiz/Pod-Utilities)
+
 # NAME
 
 Pod::Utilities - Set of helper functions to ease working with Pods!
