@@ -1,0 +1,17 @@
+{
+  "authors": ["Antonio"],
+  "build-depends": [],
+  "depends": [],
+  "description": "blah blah blah",
+  "license": "Artistic-2.0",
+  "name": "Pod::Utilities",
+  "perl": "6.c",
+  "provides": {
+    "Pod::Utilities": "lib/Pod/Utilities.pm6"
+  },
+  "resources": [],
+  "source-url": "",
+  "tags": [],
+  "test-depends": ["Test::META"],
+  "version": "0.0.1"
+}

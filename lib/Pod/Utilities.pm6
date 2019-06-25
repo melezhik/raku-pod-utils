@@ -1,4 +1,6 @@
-unit module Pod::Convenience;
+use v6.c;
+
+unit module Pod::Utilities:ver<0.0.1>;
 
 sub pod-gist(Pod::Block $pod, $level = 0) is export {
     my $leading = ' ' x $level;
@@ -111,24 +113,6 @@ sub pod-lower-headings(@content, :$to = 1) is export {
             !! $_;
     }
     @new-content;
-}
-
-my $precomp-store = CompUnit::PrecompilationStore::File.new(:prefix($?FILE.IO.parent.child("precompiled")));
-my $precomp = CompUnit::PrecompilationRepository::Default.new(store => $precomp-store);
-
-sub extract-pod(IO() $file) is export {
-    use nqp;
-    # The file name is enough for the id because POD files don't have depends
-    my $id = nqp::sha1(~$file);
-    my $handle = $precomp.load($id,:since($file.modified))[0];
-
-    if not $handle {
-        # precompile it
-        $precomp.precompile($file, $id, :force);
-        $handle = $precomp.load($id)[0];
-    }
-
-    return nqp::atkey($handle.unit,'$=pod')[0];
 }
 
 # vim: expandtab shiftwidth=4 ft=perl6
