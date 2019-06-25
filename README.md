@@ -22,7 +22,7 @@ sub first-code-block (
 ) returns Str;
 ```
 
-Returns the first Pod::Block::Code found in an array, concatenating all lines in it.
+Returns the first `Pod::Block::Code` found in an array, concatenating all lines in it.
 If any is found, it will return an empty string.
 
 Example:
@@ -46,8 +46,8 @@ sub pod-title (
 ) returns Pod::Block::Named;
 ```
 
-Creates a new Pod::Block::Named object (with :name set to "TITLE")
-and populate it with a Pod::Block::Para containing \$title.
+Creates a new `Pod::Block::Named` object (with `:name` set to `"TITLE"`)
+and populate it with a `Pod::Block::Para` containing `$title`.
 
 Example:
 
@@ -73,7 +73,7 @@ sub pod-with-title (
 ) returns Pod::Block::Named;
 ```
 
-Creates a new Pod::Block::Named object (with :name set to "pod")
+Creates a new `Pod::Block::Named` object (with `:name` set to "pod")
 and populate it with a title (using `pod-title`) and `@blocks`.
 
 Example:
@@ -97,6 +97,202 @@ pod-with-title("title", $=pod.first.contents[0]);
 Normal paragraph
 
 =end pod
+```
+
+### sub pod-with-title
+
+```perl6
+sub pod-block (
+    Array *@contents
+) returns Pod::Block::Para;
+```
+
+Creates a `Pod::Block::Para` with contents set to `@contents`.
+
+Example:
+
+```perl6
+
+
+say pod-block("title", Pod::Block::Para.new(contents => ["paragraph"]));
+
+# OUTPUT
+
+Pod::Block::Para
+  title
+  Pod::Block::Para
+    paragraph
+
+```
+
+### sub pod-link
+
+```perl6
+sub pod-link (
+    Str $text,
+    Str $url
+) returns Pod::FormattingCode;
+```
+
+Creates a `Pod::FormattingCode` (type Link) with contents set to `$text`.
+and meta set to `$url`.
+
+Example:
+
+```perl6
+
+pod-link("text","url");
+
+# OUTPUT Equivalent to:
+
+L<text|url>
+```
+
+### sub pod-bold
+
+```perl6
+sub pod-bold (
+    Str $text,
+) returns Pod::FormattingCode;
+```
+
+Creates a `Pod::FormattingCode` (type B) with contents set to `$text`.
+
+Example:
+
+```perl6
+
+pod-bold("text");
+
+# OUTPUT Equivalent to:
+
+B<text>
+```
+
+### sub pod-code
+
+```perl6
+sub pod-code (
+    Str $text,
+) returns Pod::FormattingCode;
+```
+
+Creates a `Pod::FormattingCode` (type C) with contents set to `$text`.
+
+Example:
+
+```perl6
+
+pod-code("text");
+
+# OUTPUT Equivalent to:
+
+C<text>
+```
+
+### sub pod-item
+
+```perl6
+sub pod-item (
+    Array *@contents ,
+    Int   :$level = 1,
+) returns Pod::Item;
+```
+
+Creates a `Pod::Item` object with contents set to `@contents` and level to `$level`.
+
+Example:
+
+```perl6
+
+pod-item(pod-block("item"), level => 1);
+
+# OUTPUT Equivalent to:
+
+=item item
+
+```
+
+### sub pod-heading
+
+```perl6
+sub pod-heading (
+    Str   $name,
+    Int   :$level = 1,
+) returns Pod::Heading;
+```
+
+Creates a `Pod::Heading` object with level set `$level` and contents initialized
+with a `Pod::Block::Para` object containing `$name`.
+
+Example:
+
+```perl6
+
+pod-heading("heading", level => 1);
+
+# OUTPUT Equivalent to:
+
+=head1 heading
+
+```
+
+### sub pod-heading
+
+```perl6
+sub pod-heading (
+    Array @contents,
+    Array :@headers,
+) returns Pod::Block::Table;
+```
+
+Creates a `Pod::Block::Table` object with the headers `@headers` and rows `@contents`.
+`$caption` is set to `""`.
+Example:
+
+```perl6
+
+pod-table([["col1", "col2"],], headers => ["h1", "h2"]);
+
+# OUTPUT Equivalent to:
+
+=begin table
+
+h1   | h2
+============
+col1 | col2
+
+=end table
+
+```
+
+### sub pod-heading
+
+```perl6
+sub pod-lower-headings (
+    Array @content,
+    Int   :$to,
+) returns Array;
+```
+
+Given an array of Pod objects, lower the level of every heading following
+the next formula => `current-level - $by + $to`, where `$by` is the level of the
+first heading found in the array.
+
+Example:
+
+```perl6
+
+pod-table([pod-heading("head", level => 2),
+           pod-heading("head", level => 3)],
+           headers => ["h1", "h2"]);
+
+# OUTPUT Equivalent to:
+
+=head1 head
+
+=head2 head
+
 ```
 
 # AUTHOR

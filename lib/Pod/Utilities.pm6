@@ -62,10 +62,13 @@ sub pod-with-title($title, *@blocks) is export {
     );
 }
 
+#| Creates a Pod::Block::Para object with contents set to @contents.
 sub pod-block(*@contents) is export {
     Pod::Block::Para.new(:@contents);
 }
 
+#| Creates a Pod::FormattingCode (type Link) object with contents set to $text
+#| and meta set to $url.
 sub pod-link($text, $url) is export {
     Pod::FormattingCode.new(
         type     => 'L',
@@ -74,6 +77,7 @@ sub pod-link($text, $url) is export {
     );
 }
 
+#| Creates a Pod::FormattingCode (type Bold) object with contents set to $text
 sub pod-bold($text) is export {
     Pod::FormattingCode.new(
         type     => 'B',
@@ -81,6 +85,7 @@ sub pod-bold($text) is export {
     );
 }
 
+#| Creates a Pod::FormattingCode (type C) object with contents set to $text
 sub pod-code($text) is export {
     Pod::FormattingCode.new(
         type     => 'C',
@@ -88,6 +93,7 @@ sub pod-code($text) is export {
     );
 }
 
+#| Creates a Pod::Item object with contents set to @contents a level to $level
 sub pod-item(*@contents, :$level = 1) is export {
     Pod::Item.new(
         :$level,
@@ -95,6 +101,8 @@ sub pod-item(*@contents, :$level = 1) is export {
     );
 }
 
+#| Creates a Pod::Heading object with level set $level and contents initialized
+#| with a Pod::Block::Para object containing $name.
 sub pod-heading($name, :$level = 1) is export {
     Pod::Heading.new(
         :$level,
@@ -102,13 +110,19 @@ sub pod-heading($name, :$level = 1) is export {
     );
 }
 
+#| Creates a Pod::Block::Table object with the headers @headers and rows @contents. 
+#| $caption is set to "".
 sub pod-table(@contents, :@headers) is export {
     Pod::Block::Table.new(
         |(:@headers if @headers),
-        :@contents
+        :@contents,
+        :caption("")
     );
 }
 
+#| Given an array of Pod objects, lower the level of every heading following
+#| the next formula => current-level - $by + $to, where $by is the level of the
+#| first heading found in the array.
 sub pod-lower-headings(@content, :$to = 1) is export {
     my $by = @content.first(Pod::Heading).level;
     return @content unless $by > $to;
