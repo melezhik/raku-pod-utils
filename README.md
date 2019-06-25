@@ -311,6 +311,25 @@ pod-table([pod-heading("head", level => 2),
 
 ```
 
+### multi sub textify-guts
+
+```perl6
+multi textify-guts (Any:U,       ) return Str;
+multi textify-guts (Str:D      \v) return Str;
+multi textify-guts (List:D     \v) return Str;
+multi textify-guts (Pod::Block \v) return Str;
+```
+
+Converts lists of `Pod::Block::*` objects and `Pod::Block` objects to strings.
+
+Example:
+
+```perl6
+my $block = Pod::Block::Para.new(contents => ["block"]);
+say textify-guts($block); # OUTPUT «block␤»
+say textify-guts([$block, $block]); # OUTPUT «block block␤»
+```
+
 # AUTHORS
 
 Alexander Mouquin <@Mouq>

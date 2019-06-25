@@ -105,4 +105,14 @@ sub pod-lower-headings(@content, :$to = 1) is export {
     @new-content;
 }
 
+#| Converts Lists of Pod::Blocks to Strings.
+multi textify-guts (Any:U,       ) is export { '' }
+multi textify-guts (Str:D      \v) is export { v }
+multi textify-guts (List:D     \v) is export { v».&textify-guts.Str }
+multi textify-guts (Pod::Block \v) is export {
+    # core module
+    use Pod::To::Text;
+    pod2text v;
+}
+
 # vim: expandtab shiftwidth=4 ft=perl6
