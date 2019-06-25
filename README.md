@@ -14,6 +14,30 @@ use Pod::Utilities;
 
 Pod::Utilities is a set of tools to deal with Pod elements. It lets you create several Pod objects, obtain gists and modify headings.
 
+### sub first-code-block
+
+```perl6
+sub first-code-block (
+    Array @pod
+) returns Str;
+```
+
+Returns the first Pod::Block::Code found in an array, concatenating all lines in it.
+If any is found, it will return an empty string.
+
+Example:
+
+```perl6
+=being pod
+    say "some code";
+    say "more code";
+=end pod
+
+first-code-block($=pod[0].contents)
+
+# OUTPUT «say "some code";␤say "more code";␤»
+```
+
 # AUTHOR
 
 Alexander Mouquin <@Mouq>

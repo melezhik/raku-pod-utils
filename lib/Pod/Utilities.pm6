@@ -32,8 +32,10 @@ sub pod-gist(Pod::Block $pod, $level = 0) is export {
     @chunks.join;
 }
 
+#| Returns the first Pod::Block::Code found in an array, concatenating 
+#| all lines in it. If any is found, it will return an empty string.
 sub first-code-block(@pod) is export {
-    @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join;
+    @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
 
 sub pod-with-title($title, *@blocks) is export {
