@@ -39,14 +39,70 @@ If none is found, it will return an empty string.
 Example:
 
 ```perl6
-=being pod
+=begin pod
+=begin code
     say "some code";
     say "more code";
+=end code
 =end pod
 
 first-code-block($=pod[0].contents)
 
 # OUTPUT «say "some code";␤say "more code";␤»
+```
+
+### sub first-title
+
+```perl6
+sub first-title (
+    Array @pod
+) returns Pod::Block::Named;
+```
+
+Returns the first `=TITLE` element found in `@pods`.
+
+Example:
+
+```perl6
+=begin pod
+
+=TITLE title
+
+=end pod
+
+first-title($=pod[0].contents)
+
+# OUTPUT equivalent to:
+
+=TITLE title
+
+```
+
+### sub first-subtitle
+
+```perl6
+sub first-subtitle (
+    Array @pod
+) returns Pod::Block::Named;
+```
+
+Returns the first `=SUBTITLE` element found in `@pods`.
+
+Example:
+
+```perl6
+=begin pod
+
+=subTITLE subtitle
+
+=end pod
+
+first-subtitle($=pod[0].contents)
+
+# OUTPUT equivalent to:
+
+=SUBTITLE subtitle
+
 ```
 
 ### multi sub textify-guts
