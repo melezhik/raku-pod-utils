@@ -2,6 +2,52 @@ use v6.c;
 
 unit module Pod::Utilities::Build:ver<0.0.1>;
 
+=head1 NAME
+
+Pod::Utilities::Build - Set of helper functions to ease create new
+Pods elements.
+
+=head1 SYNOPSIS
+
+    use Pod::Utilities::Build;
+
+    # time to build Pod::* elements!
+    say pod-bold("bold text");
+
+=head1 DESCRIPTION
+
+Pod::Utilities::Build is a set of routines that help you to create new 
+Pod elements.
+
+=head1 AUTHORS
+
+Alexander Mouquin <@Mouq>
+
+Will Coleda <@coke>
+
+Rob Hoelz <@hoelzro>
+
+<@timo>
+
+Moritz Lenz <@moritz>
+
+Juan Julián <@JJ>
+
+<@MasterDuke17>
+
+Zoffix Znet <@zoffixznet>
+
+Antonio <@antoniogamiz>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2019 Perl6 team
+
+This library is free software; you can redistribute it and/or modify
+it under the Artistic License 2.0. 
+
+=end pod
+
 #| Creates a new Pod::Block::Named object (with :name set to "TITLE")
 #| and populate it with a Pod::Block::Para containing $title.
 sub pod-title($title) is export {
