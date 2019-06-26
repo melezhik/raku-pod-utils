@@ -9,7 +9,7 @@ Pod::Utilities - Set of helper functions to ease working with Pods!
 ```perl6
     use Pod::Utilities;
 
-    # time to build Pod::* elements!
+    # time to work with Pod::* elements!
     say first-subtitle($=pod[0].contents);
 
     =begin pod

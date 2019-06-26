@@ -13,7 +13,7 @@ Pods elements.
 
     use Pod::Utilities;
 
-    # time to build Pod::* elements!
+    # time to work with Pod::* elements!
     say first-subtitle($=pod[0].contents);
 
     =begin pod
