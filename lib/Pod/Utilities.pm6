@@ -8,6 +8,16 @@ sub first-code-block(@pod) is export {
     @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
 
+#| Returns the text in the first =TITLE found in @pod.
+sub first-title(@pod) is export {
+    @pod.first((* ~~ Pod::Block::Named and *.name eq "TITLE"));
+}
+
+#| Returns the text in the first =SUBTITLE found in @pod.
+sub first-subtitle(@pod) is export {
+    @pod.first((* ~~ Pod::Block::Named and *.name eq "SUBTITLE"));    
+}
+
 #| Creates a new Pod::Block::Named object (with :name set to "TITLE")
 #| and populate it with a Pod::Block::Para containing $title.
 sub pod-title($title) is export {
