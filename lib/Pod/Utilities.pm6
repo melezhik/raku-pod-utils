@@ -3,7 +3,7 @@ use v6.c;
 unit module Pod::Utilities:ver<0.0.1>;
 
 #| Returns the first Pod::Block::Code found in an array, concatenating 
-#| all lines in it. If any is found, it will return an empty string.
+#| all lines in it. If none is found, it will return an empty string.
 sub first-code-block(@pod) is export {
     @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
