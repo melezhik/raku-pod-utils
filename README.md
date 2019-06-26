@@ -115,7 +115,7 @@ Normal paragraph
 =end pod
 ```
 
-### sub pod-with-title
+### sub pod-block
 
 ```perl6
 sub pod-block (
@@ -253,10 +253,10 @@ pod-heading("heading", level => 1);
 
 ```
 
-### sub pod-heading
+### sub pod-table
 
 ```perl6
-sub pod-heading (
+sub pod-table (
     Array @contents,
     Array :@headers,
 ) returns Pod::Block::Table;
@@ -282,7 +282,7 @@ col1 | col2
 
 ```
 
-### sub pod-heading
+### sub pod-lower-headings
 
 ```perl6
 sub pod-lower-headings (
@@ -299,9 +299,12 @@ Example:
 
 ```perl6
 
-pod-table([pod-heading("head", level => 2),
-           pod-heading("head", level => 3)],
-           headers => ["h1", "h2"]);
+my @contents = [
+    pod-heading("head", level => 2),
+    pod-heading("head", level => 3)
+];
+
+pod-lower-headings(@contents)
 
 # OUTPUT Equivalent to:
 
