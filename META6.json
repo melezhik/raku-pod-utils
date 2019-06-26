@@ -17,7 +17,8 @@
   "name": "Pod::Utilities",
   "perl": "6.c",
   "provides": {
-    "Pod::Utilities": "lib/Pod/Utilities.pm6"
+    "Pod::Utilities": "lib/Pod/Utilities.pm6",
+    "Pod::Utilities::Build": "lib/Pod/Utilities/Build.pm6"
   },
   "resources": [],
   "source-url": "https://github.com/antoniogamiz/Pod-Utilities.git",
