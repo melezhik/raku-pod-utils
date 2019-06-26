@@ -41,8 +41,10 @@ Example:
 ```perl6
 =begin pod
 =begin code
+
     say "some code";
     say "more code";
+
 =end code
 =end pod
 
