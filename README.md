@@ -28,7 +28,7 @@ say first-code-block($=pod[0].contents);
 
 # DESCRIPTION
 
-Pod::Utilities is a set of routines that help you to with Pod elements. It lets you create several kinds of Pod objects, obtain gists and modify headings.
+Pod::Utilities is a set of routines that help you to deal with Pod elements. It lets you create several kinds of Pod objects, obtain gists and modify headings.
 
 ### sub first-code-block
 
