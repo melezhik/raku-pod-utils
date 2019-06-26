@@ -28,7 +28,7 @@ say first-code-block($=pod[0].contents);
 
 # DESCRIPTION
 
-Pod::Utilities is a set of tools to deal with Pod elements. It lets you create several Pod objects, obtain gists and modify headings.
+Pod::Utilities is a set of routines that help you to with Pod elements. It lets you create several kinds of Pod objects, obtain gists and modify headings.
 
 ### sub first-code-block
 
@@ -39,7 +39,7 @@ sub first-code-block (
 ```
 
 Returns the first `Pod::Block::Code` found in an array, concatenating all lines in it.
-If any is found, it will return an empty string.
+If none is found, it will return an empty string.
 
 Example:
 
@@ -63,7 +63,7 @@ sub pod-title (
 ```
 
 Creates a new `Pod::Block::Named` object (with `:name` set to `"TITLE"`)
-and populate it with a `Pod::Block::Para` containing `$title`.
+and populates it with a `Pod::Block::Para` containing `$title`.
 
 Example:
 
@@ -361,7 +361,7 @@ Rob Hoelz <@hoelzro>
 
 Moritz Lenz <@moritz>
 
-Juan Julian <@JJ>
+Juan Julián <@JJ>
 
 <@MasterDuke17>
 
@@ -371,6 +371,6 @@ Antonio <@antoniogamiz>
 
 # COPYRIGHT AND LICENSE
 
-Copyright 2019 Antonio
+Copyright 2019 Perl 6 team
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
