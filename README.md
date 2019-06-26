@@ -7,28 +7,23 @@ Pod::Utilities - Set of helper functions to ease working with Pods!
 # SYNOPSIS
 
 ```perl6
-use Pod::Utilities;
+    use Pod::Utilities;
 
-# create links!
-my $link = pod-link("documentation", "https://docs.perl6.org/");
+    # time to build Pod::* elements!
+    say first-subtitle($=pod[0].contents);
 
-# create bold formatting!
-my $bold = pod-bold("bold");
+    =begin pod
 
-# and more...
-say first-code-block($=pod[0].contents);
+    =SUBTITLE Some cool text
 
-=begin pod
-
-  say "Perl6 rocks";
-
-=end pod
-
+    =end pod
 ```
 
 # DESCRIPTION
 
-Pod::Utilities is a set of routines that help you to deal with Pod elements. It lets you create several kinds of Pod objects, obtain gists and modify headings.
+Pod::Utilities is a set of routines that help you to deal with Pod elements.
+It lets you manipulate several kinds of Pod objects, obtain gists and modify
+headings.
 
 ### sub first-code-block
 
@@ -53,6 +48,60 @@ first-code-block($=pod[0].contents)
 
 # OUTPUT «say "some code";␤say "more code";␤»
 ```
+
+### multi sub textify-guts
+
+```perl6
+multi textify-guts (Any:U,       ) return Str;
+multi textify-guts (Str:D      \v) return Str;
+multi textify-guts (List:D     \v) return Str;
+multi textify-guts (Pod::Block \v) return Str;
+```
+
+Converts lists of `Pod::Block::*` objects and `Pod::Block` objects to strings.
+
+Example:
+
+```perl6
+my $block = Pod::Block::Para.new(contents => ["block"]);
+say textify-guts($block); # OUTPUT «block␤»
+say textify-guts([$block, $block]); # OUTPUT «block block␤»
+```
+
+### multi sub recurse-until-str
+
+```perl6
+multi sub recurse-until-str(Str:D $s)      return Str;
+multi sub recurse-until-str(Pod::Block $n) return Str;
+
+```
+
+Accepts a `Pod::Block::*` object and returns a concatenation of all subpods content.
+
+Example:
+
+```perl6
+my $block         = Pod::Block::Para.new(contents => ["block"]);
+my $complex-block = pod-block("one", pod-block("two"), pod-bold("three"));
+say recurse-until-str($block); # OUTPUT «block␤»
+say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
+```
+
+# Pod::Utilities::Build
+
+# SYNOPSIS
+
+```perl6
+    use Pod::Utilities::Build;
+
+    # time to build Pod::* elements!
+    say pod-bold("bold text");
+```
+
+# DESCRIPTION
+
+Pod::Utilities::Build is a set of routines that help you to create new
+Pod elements.
 
 ### sub pod-title
 
@@ -312,44 +361,6 @@ pod-lower-headings(@contents)
 
 =head2 head
 
-```
-
-### multi sub textify-guts
-
-```perl6
-multi textify-guts (Any:U,       ) return Str;
-multi textify-guts (Str:D      \v) return Str;
-multi textify-guts (List:D     \v) return Str;
-multi textify-guts (Pod::Block \v) return Str;
-```
-
-Converts lists of `Pod::Block::*` objects and `Pod::Block` objects to strings.
-
-Example:
-
-```perl6
-my $block = Pod::Block::Para.new(contents => ["block"]);
-say textify-guts($block); # OUTPUT «block␤»
-say textify-guts([$block, $block]); # OUTPUT «block block␤»
-```
-
-### multi sub recurse-until-str
-
-```perl6
-multi sub recurse-until-str(Str:D $s)      return Str;
-multi sub recurse-until-str(Pod::Block $n) return Str;
-
-```
-
-Accepts a `Pod::Block::*` object and returns a concatenation of all subpods content.
-
-Example:
-
-```perl6
-my $block         = Pod::Block::Para.new(contents => ["block"]);
-my $complex-block = pod-block("one", pod-block("two"), pod-bold("three"));
-say recurse-until-str($block); # OUTPUT «block␤»
-say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
 ```
 
 # AUTHORS
