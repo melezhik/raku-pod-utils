@@ -2,6 +2,8 @@ use v6.c;
 
 unit module Pod::Utilities:ver<0.0.1>;
 
+=begin pod
+
 =head1 NAME
 
 Pod::Utilities::Build - Set of helper functions to ease create new
