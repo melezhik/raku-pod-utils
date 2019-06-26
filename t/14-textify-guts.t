@@ -4,6 +4,7 @@ use Test;
 plan *;
 
 use Pod::Utilities;
+use Pod::Utilities::Build;
 
 my $block = Pod::Block::Para.new(contents => ["block"]);
 

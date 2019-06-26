@@ -3,7 +3,7 @@ use Test;
 
 plan 1;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 is-deeply pod-table([["col1", "col2"],], headers => ["h1","h2"]), $=pod[0].contents[0],
 "Correct structure";

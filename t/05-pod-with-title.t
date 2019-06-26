@@ -3,7 +3,7 @@ use Test;
 
 plan 2;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 my $paragraph = $=pod[0].contents[1];
 

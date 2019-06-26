@@ -3,7 +3,7 @@ use Test;
 
 plan 2;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 is-deeply pod-heading("heading", level => 1), $=pod[0].contents[0],
 "Correct structure";
