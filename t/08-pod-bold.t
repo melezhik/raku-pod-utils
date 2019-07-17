@@ -3,7 +3,7 @@ use Test;
 
 plan 2;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 is-deeply pod-bold("bold"), $=pod[0].contents[0].contents[0],
 "Correct structure";

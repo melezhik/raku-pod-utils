@@ -3,7 +3,7 @@ use Test;
 
 plan 1;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 my @contents = [
     pod-heading("head", level => 2),

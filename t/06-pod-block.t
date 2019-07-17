@@ -3,7 +3,7 @@ use Test;
 
 plan 1;
 
-use Pod::Utilities;
+use Pod::Utilities::Build;
 
 is-deeply pod-block("1", "2"), Pod::Block::Para.new(contents => ["1", "2"]),
 "Correct structure";

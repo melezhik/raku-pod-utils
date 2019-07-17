@@ -2,107 +2,75 @@ use v6.c;
 
 unit module Pod::Utilities:ver<0.0.1>;
 
+=begin pod
+
+=head1 NAME
+
+Pod::Utilities::Build - Set of helper functions to ease create new
+Pods elements.
+
+=head1 SYNOPSIS
+
+    use Pod::Utilities;
+
+    # time to work with Pod::* elements!
+    say first-subtitle($=pod[0].contents);
+
+    =begin pod
+
+    =SUBTITLE Some cool text
+
+    =end pod
+
+=head1 DESCRIPTION
+
+Pod::Utilities is a set of routines that help you to deal with Pod elements. 
+It lets you manipulate several kinds of Pod objects, obtain gists and modify 
+headings.
+
+=head1 AUTHORS
+
+Alexander Mouquin <@Mouq>
+
+Will Coleda <@coke>
+
+Rob Hoelz <@hoelzro>
+
+<@timo>
+
+Moritz Lenz <@moritz>
+
+Juan Julián <@JJ>
+
+<@MasterDuke17>
+
+Zoffix Znet <@zoffixznet>
+
+Antonio <@antoniogamiz>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2019 Perl6 team
+
+This library is free software; you can redistribute it and/or modify
+it under the Artistic License 2.0. 
+
+=end pod
+
 #| Returns the first Pod::Block::Code found in an array, concatenating 
-#| all non-empty lines in it. If none is found, it will return an empty string.
+#| all lines in it. If none is found, it will return an empty string.
 sub first-code-block(@pod) is export {
     @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
 
-#| Creates a new Pod::Block::Named object (with :name set to "TITLE")
-#| and populates it with a Pod::Block::Para containing $title.
-sub pod-title($title) is export {
-    Pod::Block::Named.new(
-        name     => "TITLE",
-        contents => Array.new(
-            Pod::Block::Para.new(
-                contents => [$title],
-            )
-        )
-    );
+#| Returns the text in the first =TITLE found in @pod.
+sub first-title(@pod) is export {
+    @pod.first((* ~~ Pod::Block::Named and *.name eq "TITLE"));
 }
 
-#| Creates a new Pod::Block::Named object (with :name set to "pod")
-#| and populates it with a title (using pod-title) and @blocks.
-sub pod-with-title($title, *@blocks) is export {
-    Pod::Block::Named.new(
-        name     => "pod",
-        contents => [
-            flat pod-title($title), @blocks
-        ]
-    );
-}
-
-#| Creates a Pod::Block::Para object with contents set to @contents.
-sub pod-block(*@contents) is export {
-    Pod::Block::Para.new(:@contents);
-}
-
-#| Creates a Pod::FormattingCode (type Link) object with contents set to $text
-#| and meta set to $url.
-sub pod-link($text, $url) is export {
-    Pod::FormattingCode.new(
-        type     => 'L',
-        contents => [$text],
-        meta     => [$url],
-    );
-}
-
-#| Creates a Pod::FormattingCode (type Bold) object with contents set to $text
-sub pod-bold($text) is export {
-    Pod::FormattingCode.new(
-        type     => 'B',
-        contents => [$text],
-    );
-}
-
-#| Creates a Pod::FormattingCode (type C) object with contents set to $text
-sub pod-code($text) is export {
-    Pod::FormattingCode.new(
-        type     => 'C',
-        contents => [$text],
-    );
-}
-
-#| Creates a Pod::Item object with contents set to @contents a level to $level
-sub pod-item(*@contents, :$level = 1) is export {
-    Pod::Item.new(
-        :$level,
-        :@contents,
-    );
-}
-
-#| Creates a Pod::Heading object with level set $level and contents initialized
-#| with a Pod::Block::Para object containing $name.
-sub pod-heading($name, :$level = 1) is export {
-    Pod::Heading.new(
-        :$level,
-        :contents[pod-block($name)],
-    );
-}
-
-#| Creates a Pod::Block::Table object with the headers @headers and rows @contents. 
-#| $caption is set to "".
-sub pod-table(@contents, :@headers) is export {
-    Pod::Block::Table.new(
-        |(:@headers if @headers),
-        :@contents,
-        :caption("")
-    );
-}
-
-#| Given an array of Pod objects, lower the level of every heading following
-#| the next formula => current-level - $by + $to, where $by is the level of the
-#| first heading found in the array.
-sub pod-lower-headings(@content, :$to = 1) is export {
-    my $by = @content.first(Pod::Heading).level;
-    return @content unless $by > $to;
-    my @new-content;
-    for @content {
-        @new-content.append: $_ ~~ Pod::Heading
-            ?? Pod::Heading.new: :level(.level - $by + $to) :contents[.contents]
-            !! $_;
-    }
-    @new-content;
+#| Returns the text in the first =SUBTITLE found in @pod.
+sub first-subtitle(@pod) is export {
+    @pod.first((* ~~ Pod::Block::Named and *.name eq "SUBTITLE"));    
 }
 
 #| Converts Lists of Pod::Blocks to Strings.
@@ -115,7 +83,7 @@ multi textify-guts (Pod::Block \v) is export {
     pod2text v;
 }
 
-#| Accepts a Pod::Block and returns a concatenation of all subpods content
+#| Accepts a Pod::Block and returns a concatenation of the content of all subpods
 multi sub recurse-until-str(Str:D $s) is export { $s }
 multi sub recurse-until-str(Pod::Block $n) is export { $n.contents>>.&recurse-until-str().join }
 
