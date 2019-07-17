@@ -3,13 +3,13 @@ use v6.c;
 unit module Pod::Utilities:ver<0.0.1>;
 
 #| Returns the first Pod::Block::Code found in an array, concatenating 
-#| all lines in it. If none is found, it will return an empty string.
+#| all non-empty lines in it. If none is found, it will return an empty string.
 sub first-code-block(@pod) is export {
     @pod.first(* ~~ Pod::Block::Code).contents.grep(Str).join || "";
 }
 
 #| Creates a new Pod::Block::Named object (with :name set to "TITLE")
-#| and populate it with a Pod::Block::Para containing $title.
+#| and populates it with a Pod::Block::Para containing $title.
 sub pod-title($title) is export {
     Pod::Block::Named.new(
         name     => "TITLE",
@@ -22,7 +22,7 @@ sub pod-title($title) is export {
 }
 
 #| Creates a new Pod::Block::Named object (with :name set to "pod")
-#| and populate it with a title (using pod-title) and @blocks.
+#| and populates it with a title (using pod-title) and @blocks.
 sub pod-with-title($title, *@blocks) is export {
     Pod::Block::Named.new(
         name     => "pod",
