@@ -83,7 +83,7 @@ multi textify-guts (Pod::Block \v) is export {
     pod2text v;
 }
 
-#| Accepts a Pod::Block and returns a concatenation of all subpods content
+#| Accepts a Pod::Block and returns a concatenation of the content of all subpods
 multi sub recurse-until-str(Str:D $s) is export { $s }
 multi sub recurse-until-str(Pod::Block $n) is export { $n.contents>>.&recurse-until-str().join }
 

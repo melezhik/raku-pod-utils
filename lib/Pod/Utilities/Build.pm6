@@ -6,7 +6,7 @@ unit module Pod::Utilities::Build:ver<0.0.1>;
 
 =head1 NAME
 
-Pod::Utilities::Build - Set of helper functions to ease create new
+Pod::Utilities::Build - Set of helper functions to ease the creation of new
 Pods elements.
 
 =head1 SYNOPSIS
@@ -51,7 +51,7 @@ it under the Artistic License 2.0.
 =end pod
 
 #| Creates a new Pod::Block::Named object (with :name set to "TITLE")
-#| and populate it with a Pod::Block::Para containing $title.
+#| and populates it with a Pod::Block::Para containing $title.
 sub pod-title($title) is export {
     Pod::Block::Named.new(
         name     => "TITLE",
@@ -64,7 +64,7 @@ sub pod-title($title) is export {
 }
 
 #| Creates a new Pod::Block::Named object (with :name set to "pod")
-#| and populate it with a title (using pod-title) and @blocks.
+#| and populates it with a title (using pod-title) and @blocks.
 sub pod-with-title($title, *@blocks) is export {
     Pod::Block::Named.new(
         name     => "pod",
