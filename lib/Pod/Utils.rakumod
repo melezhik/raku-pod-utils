@@ -86,5 +86,3 @@ multi textify-guts (Pod::Block \v) is export {
 #| Accepts a Pod::Block and returns a concatenation of the content of all subpods
 multi sub recurse-until-str(Str:D $s) is export { $s }
 multi sub recurse-until-str(Pod::Block $n) is export { $n.contents>>.&recurse-until-str().join }
-
-# vim: expandtab shiftwidth=4 ft=perl6
