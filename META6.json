@@ -10,8 +10,7 @@
     "@zoffixznet",
     "@antoniogamiz"
   ],
-  "build-depends": [],
-  "depends": [],
+  "auth": "zef:jjmerelo",
   "description": "Toolset of functions to ease working with Pod6s!",
   "license": "Artistic-2.0",
   "name": "Pod::Utils",
@@ -20,7 +19,6 @@
     "Pod::Utils": "lib/Pod/Utils.rakumod",
     "Pod::Utils::Build": "lib/Pod/Utils/Build.rakumod"
   },
-  "resources": [],
   "source-url": "https://github.com/JJ/raku-pod-utils.git",
   "tags": ["Documentation","Utils","Devtools"],
   "test-depends": ["Test::META"],
