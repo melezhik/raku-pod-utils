@@ -3,7 +3,7 @@ use Test;
 
 plan 2;
 
-use Pod::Utilities::Build;
+use Pod::Utils::Build;
 
 is-deeply pod-link("nometa", "meta"), $=pod[0].contents[0].contents[0],
 "Correct structure";

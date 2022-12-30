@@ -7,7 +7,7 @@ Pod::Utilities - Set of helper functions to ease working with Pods!
 # SYNOPSIS
 
 ```perl6
-    use Pod::Utilities;
+    use Pod::Utils;
 
     # time to work with Pod::* elements!
     say first-subtitle($=pod[0].contents);
@@ -150,7 +150,7 @@ say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
 # SYNOPSIS
 
 ```perl6
-    use Pod::Utilities::Build;
+    use Pod::Utils::Build;
 
     # time to build Pod::* elements!
     say pod-bold("bold text");

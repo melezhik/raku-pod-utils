@@ -3,8 +3,8 @@ use Test;
 
 plan *;
 
-use Pod::Utilities;
-use Pod::Utilities::Build;
+use Pod::Utils;
+use Pod::Utils::Build;
 
 my $block         = Pod::Block::Para.new(contents => ["block"]);
 my $complex-block = pod-block("one", pod-block("two"), pod-bold("three"));

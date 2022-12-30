@@ -3,7 +3,7 @@ use Test;
 
 plan 1;
 
-use Pod::Utilities;
+use Pod::Utils;
 
 use-ok 'Pod::Utilities';
 

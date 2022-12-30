@@ -3,7 +3,7 @@ use Test;
 
 plan *;
 
-use Pod::Utilities;
+use Pod::Utils;
 
 my $code = $=pod[0].contents[2].contents[0];
 

@@ -2,8 +2,8 @@ use v6.c;
 use Test;
 BEGIN plan :skip-all<Test applicable to git checkout only> unless '.git'.IO.e;
 
-use Pod::Utilities;
-use Pod::Utilities::Build;
+use Pod::Utils;
+use Pod::Utils::Build;
 
 plan 10;
 
