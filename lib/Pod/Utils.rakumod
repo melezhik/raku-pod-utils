@@ -1,17 +1,17 @@
 use v6.c;
 
-unit module Pod::Utilities:ver<0.0.1>;
+unit module Pod::Utils:ver<0.0.2>;
 
 =begin pod
 
 =head1 NAME
 
-Pod::Utilities::Build - Set of helper functions to ease create new
+Pod::Utils - Set of helper functions to ease create new
 Pods elements.
 
 =head1 SYNOPSIS
 
-    use Pod::Utilities;
+    use Pod::Utils;
 
     # time to work with Pod::* elements!
     say first-subtitle($=pod[0].contents);
@@ -24,7 +24,7 @@ Pods elements.
 
 =head1 DESCRIPTION
 
-Pod::Utilities is a set of routines that help you to deal with Pod elements. 
+Pod::Utils is a set of routines that help you to deal with Pod elements.
 It lets you manipulate several kinds of Pod objects, obtain gists and modify 
 headings.
 

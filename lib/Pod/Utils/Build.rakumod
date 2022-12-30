@@ -1,24 +1,24 @@
 use v6.c;
 
-unit module Pod::Utilities::Build:ver<0.0.1>;
+unit module Pod::Utils::Build:ver<0.0.1>;
 
 =begin pod
 
 =head1 NAME
 
-Pod::Utilities::Build - Set of helper functions to ease the creation of new
+Pod::Utils::Build - Set of helper functions to ease the creation of new
 Pods elements.
 
 =head1 SYNOPSIS
 
-    use Pod::Utilities::Build;
+    use Pod::Utils::Build;
 
     # time to build Pod::* elements!
     say pod-bold("bold text");
 
 =head1 DESCRIPTION
 
-Pod::Utilities::Build is a set of routines that help you to create new 
+Pod::Utils::Build is a set of routines that help you to create new 
 Pod elements.
 
 =head1 AUTHORS
@@ -146,5 +146,3 @@ sub pod-lower-headings(@content, :$to = 1) is export {
     }
     @new-content;
 }
-
-# vim: expandtab shiftwidth=4 ft=perl6
