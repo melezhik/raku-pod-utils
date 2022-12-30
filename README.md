@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/antoniogamiz/Pod-Utilities.svg?branch=master)](https://travis-ci.org/antoniogamiz/Pod-Utilities)
+# NAME [![Test-install distro](https://github.com/JJ/raku-pod-utils/actions/workflows/test.yaml/badge.svg)](https://github.com/JJ/raku-pod-utils/actions/workflows/test.yaml)
 
-# NAME
-
-Pod::Utilities - Set of helper functions to ease working with Pods!
+Pod::Utils - Set of helper functions to ease working with Pods!
 
 # SYNOPSIS
 
@@ -21,7 +19,7 @@ Pod::Utilities - Set of helper functions to ease working with Pods!
 
 # DESCRIPTION
 
-Pod::Utilities is a set of routines that help you to deal with Pod elements.
+Pod::Utils is a set of routines that help you to deal with Pod elements.
 It lets you manipulate several kinds of Pod objects, obtain gists and modify
 headings.
 
@@ -145,7 +143,7 @@ say recurse-until-str($block); # OUTPUT «block␤»
 say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
 ```
 
-# Pod::Utilities::Build
+# Pod::Utils::Build
 
 # SYNOPSIS
 
@@ -158,7 +156,7 @@ say recurse-until-str($complex-block); # OUTPUT «onetwothree␤»
 
 # DESCRIPTION
 
-Pod::Utilities::Build is a set of routines that help you to create new
+Pod::Utils::Build is a set of routines that help you to create new
 Pod elements.
 
 ### sub pod-title
