@@ -4,7 +4,7 @@ Pod::Utils - Set of helper functions to ease working with Pods!
 
 # SYNOPSIS
 
-```perl6
+```raku
     use Pod::Utils;
 
     # time to work with Pod::* elements!
