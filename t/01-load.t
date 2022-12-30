@@ -5,6 +5,6 @@ plan 1;
 
 use Pod::Utils;
 
-use-ok 'Pod::Utilities';
+use-ok 'Pod::Utils';
 
 done-testing;
